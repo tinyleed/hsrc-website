@@ -8,6 +8,7 @@ Usage: python3 src/build.py [site_root] [preview_out]   (site_root defaults to .
   preview_out (optional) gets the Danish page without the <html>/<head> wrapper,
   for the Claude preview.
 """
+import html as htmllib
 import json
 import pathlib
 import re
@@ -17,6 +18,21 @@ ROOT = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.').resolve()
 PREVIEW = pathlib.Path(sys.argv[2]) if len(sys.argv) > 2 else None
 SRC = ROOT / 'src'
 SITE = 'https://hsrc.dk/'
+
+# Fonts are self-hosted on the site so visitors' browsers don't contact Google.
+# The Claude preview can't load local files, so it uses Google Fonts instead.
+FONTS_SITE = '''<link rel="preload" href="/assets/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Outfit";font-weight:600 800;font-display:swap;src:url(/assets/fonts/outfit.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:400 700;font-display:swap;src:url(/assets/fonts/figtree.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:500;font-display:swap;src:url(/assets/fonts/jetbrains-mono.woff2) format("woff2")}
+</style>
+'''
+FONTS_PREVIEW = '''<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;800&family=Figtree:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+'''
 
 LANGS = {
     'da': {
@@ -116,6 +132,7 @@ def json_ld(L, lang):
 
 def head_extra(L, lang):
     url = SITE + L['path']
+    L = {k: htmllib.escape(v, quote=True) for k, v in L.items()}
     return f'''<link rel="canonical" href="{url}">
 <link rel="alternate" hreflang="da" href="{SITE}">
 <link rel="alternate" hreflang="en" href="{SITE}en/">
@@ -149,7 +166,7 @@ def render(lang, page):
         'da': {'{{DA_HREF}}': './', '{{EN_HREF}}': 'en/', '{{DA_CURRENT}}': ' aria-current="page"', '{{EN_CURRENT}}': ''},
         'en': {'{{DA_HREF}}': '../', '{{EN_HREF}}': './', '{{DA_CURRENT}}': '', '{{EN_CURRENT}}': ' aria-current="page"'},
     }[lang]
-    for k, v in {**links, '{{TITLE}}': L['title'], '{{DESC}}': L['desc']}.items():
+    for k, v in {**links, '{{TITLE}}': htmllib.escape(L['title']), '{{DESC}}': htmllib.escape(L['desc'], quote=True)}.items():
         html = html.replace(k, v)
     assert '{{' not in html, re.findall(r'\{\{\w+\}\}', html)
     assert '<span lang=' not in html, 'unpaired language span left in page'
@@ -162,8 +179,8 @@ page = page.replace('{{MARK}}', (SRC / 'mark.inner').read_text()).replace('{{FUL
 for lang, L in LANGS.items():
     html = render(lang, page)
     if lang == 'da' and PREVIEW:
-        PREVIEW.write_text(html.replace('<!--HEAD_EXTRA-->\n', ''))
-    html = html.replace('<!--HEAD_EXTRA-->\n', head_extra(L, lang))
+        PREVIEW.write_text(html.replace('<!--HEAD_EXTRA-->\n', '').replace('<!--FONTS-->\n', FONTS_PREVIEW))
+    html = html.replace('<!--HEAD_EXTRA-->\n', head_extra(L, lang)).replace('<!--FONTS-->\n', FONTS_SITE)
     head, rest = html.split('</style>', 1)
     out = ROOT / L['path'] / 'index.html'
     out.parent.mkdir(exist_ok=True)

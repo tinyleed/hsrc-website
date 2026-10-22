@@ -38,7 +38,9 @@ node src/render-assets.js
 
 If you change the preview image later, give it a new file name and update `og:image` in `src/build.py`, because WhatsApp and Facebook cache previews by image URL.
 
-`assets/hsrc-logo.svg` (logo with name) and `assets/hsrc-mark.svg` (mascot only) are the official logo files.
+`assets/hsrc-logo.svg` (logo with name) and `assets/hsrc-mark.svg` (mascot only) are the official logo files. The page inlines a minified copy of them from `src/full.inner` and `src/mark.inner`, with colours set by CSS variables so the logo adapts to dark mode.
+
+Fonts (Outfit, Figtree, JetBrains Mono, all SIL Open Font License) are self-hosted in `assets/fonts/` so visitors' browsers don't contact Google.
 
 ## Other files
 
