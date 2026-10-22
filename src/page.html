@@ -1,0 +1,391 @@
+<title>Herning Social Running Club</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Herning Social Running Club: et gratis, socialt løbefællesskab i Herning. Vi løber hver onsdag kl. 17.00 fra Herning Bibliotek.">
+<!--HEAD_EXTRA-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;800&family=Figtree:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: the mascot leads a light hero, a cobalt info strip, then calm sections; the orange planet ring is the one recurring flourish */
+:root{
+  --bg:#f6f7fb;          /* paper with a cobalt bias */
+  --surface:#ffffff;
+  --ink:#1d1d1b;         /* logo wordmark ink */
+  --muted:#575c72;
+  --line:#dde0ec;
+  --cobalt:#24388d;      /* logo line colour */
+  --on-cobalt:#ffffff;
+  --accent:#24388d;      /* links and text accents */
+  --marigold:#f39f22;    /* logo ring colour, decoration only */
+  --marigold-soft:#fdeed6;
+  --btn-bg:#24388d;--btn-fg:#ffffff;
+  --logo-line:#24388d;--logo-ring:#f39f22;--logo-ink:#1d1d1b;--logo-fill:#f6f7fb;
+  --display:"Outfit","Avenir Next","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter-l:max(16px,env(safe-area-inset-left,0px));
+  --gutter-r:max(16px,env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1229;--surface:#161b38;--ink:#eef0f8;--muted:#a3a9c4;--line:#2a3058;
+  --cobalt:#1f2f78;--accent:#a9b8ff;--marigold-soft:#2e2a2a;--btn-bg:#a9b8ff;--btn-fg:#0e1229;
+  --logo-line:#a9b8ff;--logo-ink:#eef0f8;--logo-fill:#0e1229;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1229;--surface:#161b38;--ink:#eef0f8;--muted:#a3a9c4;--line:#2a3058;
+  --cobalt:#1f2f78;--accent:#a9b8ff;--marigold-soft:#2e2a2a;--btn-bg:#a9b8ff;--btn-fg:#0e1229;
+  --logo-line:#a9b8ff;--logo-ink:#eef0f8;--logo-fill:#0e1229;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body)}
+html[data-lang="en"] [lang="da"],html:not([data-lang="en"]) [lang="en"]{display:none!important}
+a{color:inherit}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--marigold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1100px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h2{font-size:clamp(2rem,4.4vw,3rem)}
+h3{font-size:1.35rem;font-weight:600;letter-spacing:0}
+p{margin:0}
+.eyebrow{font:500 .76rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--marigold)}
+.logo{display:block;overflow:visible}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);--logo-fill:var(--surface)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:8px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 1.35rem/1 var(--display);letter-spacing:.02em}
+.brand .logo{width:52px;height:50px}
+nav.links{display:flex;align-items:center;gap:22px;font-weight:500;font-size:.95rem}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;font:500 .75rem/1 var(--mono);padding:8px 11px;letter-spacing:.08em;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-fg)}
+@media (max-width:780px){nav.links .nl{display:none}}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:56px 64px}
+.hero h1{font-size:clamp(3rem,8vw,5.8rem);margin-top:18px}
+.ring{position:relative;display:inline-block;color:var(--accent);white-space:nowrap}
+.ring::after{content:"";position:absolute;inset:-.06em -.22em -.02em;border:.07em solid var(--marigold);border-radius:50%;transform:rotate(-7deg);pointer-events:none}
+.hero .lede{margin-top:26px;max-width:36ch;font-size:1.2rem;color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--btn-bg);color:var(--btn-fg)}
+.btn.ghost{border:1.5px solid var(--line);background:var(--surface)}
+.mascot{justify-self:center;width:100%;max-width:440px}
+.mascot .logo{width:100%;height:auto;aspect-ratio:507/482;max-width:100%;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(-1.5deg)}}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr;padding-block:36px 48px}.mascot{max-width:300px;order:-1}}
+
+/* info strip */
+.strip{background:var(--cobalt);color:var(--on-cobalt)}
+.strip ul{list-style:none;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;padding-block:16px;font:500 .9rem/1.3 var(--mono);letter-spacing:.04em}
+.strip li{display:flex;align-items:center;gap:10px}
+.strip li+li::before{content:"✳";color:var(--marigold);margin-right:24px;margin-left:-24px}
+@media (max-width:640px){.strip li+li::before{display:none}.strip ul{gap:6px 20px}}
+
+section{padding-block:80px}
+.sec-head{display:grid;gap:14px;margin-bottom:36px;max-width:640px}
+.sec-head p{color:var(--muted)}
+
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.step{border-top:3px solid var(--ink);padding-top:16px;display:grid;gap:10px;align-content:start}
+.step .t{font:500 .85rem/1 var(--mono);color:var(--accent)}
+.step p{color:var(--muted)}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+
+/* weekly run with race bib */
+.weekly{background:var(--surface);border-block:1px solid var(--line)}
+.startline{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
+.bib{position:relative;background:#ffffff;color:#1d1d1b;border:1px solid #dde0ec;border-radius:12px;padding:24px 26px 20px;transform:rotate(-2.5deg);box-shadow:0 16px 36px rgba(20,28,70,.16);width:300px;max-width:100%}
+.bib::before,.bib::after{content:"";position:absolute;top:13px;width:11px;height:11px;border-radius:50%;background:var(--bg);box-shadow:0 0 0 2px #c3c8da inset}
+.bib::before{left:13px}.bib::after{right:13px}
+.bib .row{display:flex;justify-content:space-between;font:500 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#575c72;padding-inline:18px}
+.bib .num{font:800 4.6rem/1 var(--display);text-align:center;margin:12px 0 4px;color:#24388d;letter-spacing:-.02em}
+.bib .day{text-align:center;font:600 1rem/1.2 var(--display);letter-spacing:.14em;text-transform:uppercase}
+.bib .tear{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px dashed #c3c8da;margin-top:16px;padding-top:12px;text-align:center}
+.bib .tear b{display:block;font:500 .95rem/1.2 var(--mono)}
+.bib .tear span{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#575c72}
+.facts{min-width:0}
+.facts dl{display:grid;grid-template-columns:max-content 1fr;gap:12px 24px;margin:0}
+.facts dt{font:500 .76rem/1.9 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.facts dd{margin:0;font-weight:500;min-width:0}
+.facts a{color:var(--accent);font-weight:700}
+@media (max-width:700px){.startline{grid-template-columns:1fr;gap:32px}.bib{justify-self:center;width:280px}.facts dl{grid-template-columns:1fr;gap:2px}.facts dd{margin-bottom:12px}}
+
+/* routes */
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.route{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px;align-content:start}
+.route svg{width:100%;height:auto;aspect-ratio:16/9;max-width:100%;background:var(--marigold-soft);border-radius:9px}
+.route svg path{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.route svg circle{fill:var(--marigold);stroke:var(--surface);stroke-width:2.5}
+.route .meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 .72rem/1 var(--mono);padding:6px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.route p{color:var(--muted);font-size:.96rem}
+@media (max-width:860px){.routes{grid-template-columns:1fr}}
+
+/* community */
+.community{background:var(--cobalt);color:var(--on-cobalt)}
+.community .sec-head p{color:color-mix(in srgb,var(--on-cobalt) 80%,transparent)}
+.community .eyebrow{color:var(--on-cobalt)}
+.join{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.join a{display:grid;gap:8px;padding:26px;border-radius:16px;text-decoration:none;border:1.5px solid color-mix(in srgb,var(--on-cobalt) 30%,transparent);transition:background .15s;min-width:0}
+.join a:hover{background:color-mix(in srgb,var(--on-cobalt) 8%,transparent)}
+.join .k{font:500 .76rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--marigold)}
+.join .v{font:800 clamp(1.3rem,4.5vw,1.8rem)/1.1 var(--display);overflow-wrap:anywhere}
+.join p{color:color-mix(in srgb,var(--on-cobalt) 78%,transparent)}
+@media (max-width:640px){.join{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:760px}
+.faq details{border-top:1px solid var(--line);padding-block:16px}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-weight:700;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 1.3rem/1 var(--mono);color:var(--accent)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin-top:10px;color:var(--muted);max-width:62ch}
+
+footer{border-top:1px solid var(--line);background:var(--surface);--logo-fill:var(--surface)}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding-block:32px;color:var(--muted);font-size:.9rem}
+footer .logo{width:120px;height:auto;aspect-ratio:332/371}
+footer .meta{display:grid;gap:4px;text-align:right}
+footer .mono{font-family:var(--mono);color:var(--ink)}
+@media (max-width:520px){footer .meta{text-align:left}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="hsrc-mark" viewBox="59 130 507 482">{{MARK}}</symbol>
+  <symbol id="hsrc-full" viewBox="136 218 332 371">{{FULL}}</symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="logo" viewBox="0 0 507 482" aria-hidden="true"><use href="#hsrc-mark"/></svg>
+      <span>HSRC</span>
+    </a>
+    <nav class="links" aria-label="Menu">
+      <a class="nl" href="#how"><span lang="da">Sådan løber vi</span><span lang="en">How we run</span></a>
+      <a class="nl" href="#weekly"><span lang="da">Onsdagsløb</span><span lang="en">Wednesday run</span></a>
+      <a class="nl" href="#routes"><span lang="da">Ruter</span><span lang="en">Routes</span></a>
+      <a class="nl" href="#faq">FAQ</a>
+      <div class="lang" role="group" aria-label="Sprog / Language">
+        <button type="button" id="lang-da" data-set-lang="da" aria-pressed="true">DA</button>
+        <button type="button" id="lang-en" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Herning Social Running Club</p>
+        <h1>
+          <span lang="da">Løb sammen. <span class="ring">Snak bagefter.</span></span>
+          <span lang="en">Run together. <span class="ring">Talk after.</span></span>
+        </h1>
+        <p class="lede">
+          <span lang="da">Et gratis og uformelt løbefællesskab i Herning. Alle tempoer, alle niveauer, ingen medlemskab. Mød bare op.</span>
+          <span lang="en">A free, informal running community in Herning. Every pace, every level, no membership. Just turn up.</span>
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#weekly"><span lang="da">Se næste løb</span><span lang="en">See the next run</span></a>
+          <a class="btn ghost" href="https://www.strava.com/clubs/1510591" target="_blank" rel="noopener"><span lang="da">Følg os på Strava</span><span lang="en">Join us on Strava</span></a>
+        </div>
+      </div>
+      <div class="mascot">
+        <svg class="logo" viewBox="0 0 507 482" role="img" aria-label="Herning Social Running Club"><use href="#hsrc-mark"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <ul class="wrap">
+      <li><span lang="da">Hver onsdag kl. 17.00</span><span lang="en">Every Wednesday 17:00</span></li>
+      <li>Herning Bibliotek</li>
+      <li><span lang="da">Gratis</span><span lang="en">Free</span></li>
+      <li><span lang="da">Alle tempoer</span><span lang="en">All paces</span></li>
+    </ul>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="da">Sådan løber vi</span><span lang="en">How we run</span></p>
+        <h2><span lang="da">Fællesskab først, tempo bagefter</span><span lang="en">Community first, pace second</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="t">16:55</span>
+          <h3><span lang="da">Mød op</span><span lang="en">Show up</span></h3>
+          <p><span lang="da">Vi samles foran Herning Bibliotek. Ingen tilmelding, ingen kontingent. Tag gerne en ven med.</span><span lang="en">We meet outside Herning Library. No sign-up, no fees. Bring a friend.</span></p>
+        </div>
+        <div class="step">
+          <span class="t">17:00</span>
+          <h3><span lang="da">Løb i dit tempo</span><span lang="en">Run at your pace</span></h3>
+          <p><span lang="da">Vi deler os efter tempo, så både nye og erfarne løbere får en god tur. Ingen bliver efterladt.</span><span lang="en">We split up by pace so new and experienced runners both get a good run. Nobody gets left behind.</span></p>
+        </div>
+        <div class="step">
+          <span class="t">≈ 18:00</span>
+          <h3><span lang="da">Snak bagefter</span><span lang="en">Hang out after</span></h3>
+          <p><span lang="da">Den sociale del er lige så vigtig som løbet. Bliv hængende, mød nye mennesker, og del turen på Strava.</span><span lang="en">The social part matters as much as the run. Stick around, meet new people, and share the run on Strava.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="weekly" class="weekly">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="da">Fast ugentligt løb</span><span lang="en">Weekly group run</span></p>
+        <h2><span lang="da">Onsdagsløbet</span><span lang="en">The Wednesday run</span></h2>
+      </div>
+      <div class="startline">
+        <div class="bib" aria-hidden="true">
+          <div class="row"><span>HSRC</span><span>7400 Herning</span></div>
+          <div class="num">17:00</div>
+          <div class="day"><span lang="da">Hver onsdag</span><span lang="en">Every Wednesday</span></div>
+          <div class="tear">
+            <div><b>Start</b><span lang="da">Bibliotek</span><span lang="en">Library</span></div>
+            <div><b>0 kr</b><span lang="da">Pris</span><span lang="en">Price</span></div>
+            <div><b><span lang="da">Alle</span><span lang="en">All</span></b><span lang="da">Tempo</span><span lang="en">Pace</span></div>
+          </div>
+        </div>
+        <div class="facts">
+          <dl>
+            <dt><span lang="da">Hvornår</span><span lang="en">When</span></dt>
+            <dd><span lang="da">Hver onsdag kl. 17.00</span><span lang="en">Every Wednesday at 17:00</span></dd>
+            <dt>Start</dt>
+            <dd>Herning Bibliotek, Brændgårdvej 1, 7400 Herning · <a href="https://www.google.com/maps/search/?api=1&amp;query=Herning+Bibliotek" target="_blank" rel="noopener"><span lang="da">Find vej</span><span lang="en">Directions</span></a></dd>
+            <dt><span lang="da">For hvem</span><span lang="en">Who</span></dt>
+            <dd><span lang="da">Alle er velkomne, uanset tempo og erfaring</span><span lang="en">Everyone is welcome, whatever your pace or experience</span></dd>
+            <dt><span lang="da">Pris</span><span lang="en">Cost</span></dt>
+            <dd><span lang="da">Gratis</span><span lang="en">Free</span></dd>
+            <dt><span lang="da">Nyheder</span><span lang="en">Updates</span></dt>
+            <dd><span lang="da">Aflysninger og ekstra løb slås op på</span><span lang="en">Cancellations and extra runs are posted on</span> <a href="https://www.strava.com/clubs/1510591" target="_blank" rel="noopener">Strava</a> &amp; <a href="https://www.instagram.com/herningsocialrunningclub/" target="_blank" rel="noopener">Instagram</a></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="routes">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="da">Løb i Herning</span><span lang="en">Running in Herning</span></p>
+        <h2><span lang="da">Gode steder at løbe</span><span lang="en">Good places to run</span></h2>
+        <p><span lang="da">Herning er flad, grøn og fuld af stier. Her er nogle af vores favoritter, når du løber på egen hånd.</span><span lang="en">Herning is flat, green and full of paths. Here are a few favourites for when you run on your own.</span></p>
+      </div>
+      <div class="routes">
+        <article class="route">
+          <svg viewBox="0 0 160 90" aria-hidden="true"><path d="M30 60 C 30 30, 70 18, 100 26 S 140 52, 120 66 S 60 78, 30 60 Z"/><circle cx="30" cy="60" r="5.5"/></svg>
+          <h3>Brændgårdparken</h3>
+          <div class="meta"><span class="chip"><span lang="da">Centrum</span><span lang="en">City centre</span></span><span class="chip"><span lang="da">Sø og park</span><span lang="en">Lake &amp; park</span></span></div>
+          <p><span lang="da">Lige ved biblioteket. Stier rundt om søen, perfekt til en kort tur eller intervaller.</span><span lang="en">Right next to the library. Paths around the lake, great for a short loop or intervals.</span></p>
+        </article>
+        <article class="route">
+          <svg viewBox="0 0 160 90" aria-hidden="true"><path d="M22 48 C 40 20, 80 16, 104 24 C 132 32, 142 58, 118 70 C 90 82, 48 76, 30 62 C 24 58, 22 52, 22 48 Z"/><circle cx="22" cy="48" r="5.5"/></svg>
+          <h3>Fuglsang Sø</h3>
+          <div class="meta"><span class="chip"><span lang="da">Nord for byen</span><span lang="en">North of town</span></span><span class="chip"><span lang="da">Natur</span><span lang="en">Nature</span></span></div>
+          <p><span lang="da">Rolig sø med skov omkring. God til en længere weekendtur væk fra trafikken.</span><span lang="en">A quiet lake ringed by woods. Good for a longer weekend run away from traffic.</span></p>
+        </article>
+        <article class="route">
+          <svg viewBox="0 0 160 90" aria-hidden="true"><path d="M18 70 L 46 40 L 64 58 L 90 22 L 112 50 L 128 36 L 146 66"/><circle cx="18" cy="70" r="5.5"/></svg>
+          <h3>Lovbakkerne</h3>
+          <div class="meta"><span class="chip"><span lang="da">Bakker</span><span lang="en">Hills</span></span><span class="chip"><span lang="da">Afmærket rute</span><span lang="en">Marked route</span></span></div>
+          <p><span lang="da">Herning har faktisk bakker. Kuperet terræn og skovstier, hvis du vil have pulsen op.</span><span lang="en">Herning does have hills. Rolling terrain and forest trails when you want to work hard.</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="community" id="join">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><span lang="da">Bliv en del af det</span><span lang="en">Get involved</span></p>
+        <h2><span lang="da">Find os online</span><span lang="en">Find us online</span></h2>
+        <p><span lang="da">Del dine ture, se hvem der kommer, og hold dig opdateret om næste løb.</span><span lang="en">Share your runs, see who's coming, and keep up with the next run.</span></p>
+      </div>
+      <div class="join">
+        <a href="https://www.strava.com/clubs/1510591" target="_blank" rel="noopener">
+          <span class="k">Strava</span>
+          <span class="v">Herning Social Running Club</span>
+          <p><span lang="da">Meld dig ind i klubben og se ugens løb.</span><span lang="en">Join the club and see this week's runs.</span></p>
+        </a>
+        <a href="https://www.instagram.com/herningsocialrunningclub/" target="_blank" rel="noopener">
+          <span class="k">Instagram</span>
+          <span class="v">@herningsocialrunningclub</span>
+          <p><span lang="da">Billeder, nyheder og stemningen fra onsdagene.</span><span lang="en">Photos, news and the vibe from Wednesdays.</span></p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">FAQ</p>
+        <h2><span lang="da">Spørgsmål</span><span lang="en">Questions</span></h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary><span lang="da">Er jeg hurtig nok?</span><span lang="en">Am I fast enough?</span></summary>
+          <p><span lang="da">Ja. Vi løber i flere tempoer, og ingen løber alene. Er du ny, så sig det ved starten, så finder vi en gruppe til dig.</span><span lang="en">Yes. We run at several paces and nobody runs alone. If you're new, say so at the start and we'll find you a group.</span></p>
+        </details>
+        <details>
+          <summary><span lang="da">Koster det noget?</span><span lang="en">Does it cost anything?</span></summary>
+          <p><span lang="da">Nej. Klubben er gratis og uden medlemskab.</span><span lang="en">No. The club is free and there's no membership.</span></p>
+        </details>
+        <details>
+          <summary><span lang="da">Skal jeg tilmelde mig?</span><span lang="en">Do I need to sign up?</span></summary>
+          <p><span lang="da">Nej, bare mød op. Vil du se, hvem der kommer, så følg klubben på Strava.</span><span lang="en">No, just turn up. If you want to see who's coming, follow the club on Strava.</span></p>
+        </details>
+        <details>
+          <summary><span lang="da">Taler I engelsk?</span><span lang="en">Do you speak English?</span></summary>
+          <p><span lang="da">Ja. Mange af os taler engelsk, og internationale løbere er meget velkomne.</span><span lang="en">Yes. Plenty of us speak English, and international runners are very welcome.</span></p>
+        </details>
+        <details>
+          <summary><span lang="da">Løber I også om vinteren?</span><span lang="en">Do you run in winter?</span></summary>
+          <p><span lang="da">Ja, hele året. Tag refleksvest eller pandelampe på i de mørke måneder.</span><span lang="en">Yes, all year. Wear a reflective vest or a head torch in the dark months.</span></p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <svg class="logo" viewBox="0 0 332 371" role="img" aria-label="Herning Social Running Club"><use href="#hsrc-full"/></svg>
+    <div class="meta">
+      <span class="mono">hsrc.dk</span>
+      <span><span lang="da">Hver onsdag kl. 17.00 fra Herning Bibliotek</span><span lang="en">Every Wednesday at 17:00 from Herning Library</span></span>
+      <span>© Herning Social Running Club</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function set(l){
+    root.setAttribute('data-lang',l);
+    root.setAttribute('lang',l);
+    document.querySelectorAll('[data-set-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.setLang===l))});
+    try{localStorage.setItem('hsrc-lang',l)}catch(e){}
+  }
+  var saved=null;
+  try{saved=localStorage.getItem('hsrc-lang')}catch(e){}
+  if(saved!=='da'&&saved!=='en'){saved=(navigator.language||'da').toLowerCase().indexOf('da')===0?'da':'en'}
+  set(saved);
+  document.querySelectorAll('[data-set-lang]').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.setLang)})});
+})();
+</script>
