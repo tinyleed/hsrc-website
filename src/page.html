@@ -1,6 +1,6 @@
-<title>Herning Social Running Club</title>
+<title>{{TITLE}}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Herning Social Running Club: et gratis, socialt løbefællesskab i Herning. Vi løber hver onsdag kl. 17.00 fra Herning Bibliotek.">
+<meta name="description" content="{{DESC}}">
 <!--HEAD_EXTRA-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,6 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body)}
-html[data-lang="en"] [lang="da"],html:not([data-lang="en"]) [lang="en"]{display:none!important}
 a{color:inherit}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--marigold);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1100px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
@@ -60,13 +59,16 @@ nav.links{display:flex;align-items:center;gap:22px;font-weight:500;font-size:.95
 nav.links a{text-decoration:none;color:var(--muted)}
 nav.links a:hover{color:var(--ink)}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.lang button{all:unset;cursor:pointer;font:500 .75rem/1 var(--mono);padding:8px 11px;letter-spacing:.08em;color:var(--muted)}
-.lang button[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-fg)}
+.lang a{font:500 .75rem/1 var(--mono);padding:8px 11px;letter-spacing:.08em;color:var(--muted);text-decoration:none}
+.lang a:hover{color:var(--ink)}
+.lang a[aria-current="page"]{background:var(--btn-bg);color:var(--btn-fg)}
 @media (max-width:780px){nav.links .nl{display:none}}
 
 /* hero */
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:56px 64px}
-.hero h1{font-size:clamp(3rem,8vw,5.8rem);margin-top:18px}
+.hero h1{font-size:clamp(3rem,8vw,5.8rem)}
+.hero h1 .eyebrow{display:flex;margin-bottom:18px}
+.hero h1 .slogan{display:block}
 .ring{position:relative;display:inline-block;color:var(--accent);white-space:nowrap}
 .ring::after{content:"";position:absolute;inset:-.06em -.22em -.02em;border:.07em solid var(--marigold);border-radius:50%;transform:rotate(-7deg);pointer-events:none}
 .hero .lede{margin-top:26px;max-width:36ch;font-size:1.2rem;color:var(--muted)}
@@ -177,8 +179,8 @@ footer .mono{font-family:var(--mono);color:var(--ink)}
       <a class="nl" href="#routes"><span lang="da">Ruter</span><span lang="en">Routes</span></a>
       <a class="nl" href="#faq">FAQ</a>
       <div class="lang" role="group" aria-label="Sprog / Language">
-        <button type="button" id="lang-da" data-set-lang="da" aria-pressed="true">DA</button>
-        <button type="button" id="lang-en" data-set-lang="en" aria-pressed="false">EN</button>
+        <a href="{{DA_HREF}}" hreflang="da" lang="da" title="Dansk"{{DA_CURRENT}}>DA</a>
+        <a href="{{EN_HREF}}" hreflang="en" lang="en" title="English"{{EN_CURRENT}}>EN</a>
       </div>
     </nav>
   </div>
@@ -188,14 +190,13 @@ footer .mono{font-family:var(--mono);color:var(--ink)}
   <div class="hero">
     <div class="wrap">
       <div>
-        <p class="eyebrow">Herning Social Running Club</p>
         <h1>
-          <span lang="da">Løb sammen. <span class="ring">Snak bagefter.</span></span>
-          <span lang="en">Run together. <span class="ring">Talk after.</span></span>
+          <span class="eyebrow">Herning Social Running Club</span>
+          <span class="slogan"><span lang="da">Løb sammen. <span class="ring">Snak bagefter.</span></span><span lang="en">Run together. <span class="ring">Talk after.</span></span></span>
         </h1>
         <p class="lede">
-          <span lang="da">Et gratis og uformelt løbefællesskab i Herning. Alle tempoer, alle niveauer, ingen medlemskab. Mød bare op.</span>
-          <span lang="en">A free, informal running community in Herning. Every pace, every level, no membership. Just turn up.</span>
+          <span lang="da">En gratis og uformel løbeklub i Herning. Alle tempoer, alle niveauer, intet medlemskab. Mød bare op.</span>
+          <span lang="en">A free, informal running club in Herning. Every pace, every level, no membership. Just turn up.</span>
         </p>
         <div class="cta">
           <a class="btn primary" href="#weekly"><span lang="da">Se næste løb</span><span lang="en">See the next run</span></a>
@@ -265,7 +266,7 @@ footer .mono{font-family:var(--mono);color:var(--ink)}
             <dt><span lang="da">Hvornår</span><span lang="en">When</span></dt>
             <dd><span lang="da">Hver onsdag kl. 17.00</span><span lang="en">Every Wednesday at 17:00</span></dd>
             <dt>Start</dt>
-            <dd>Herning Bibliotek, Brændgårdvej 1, 7400 Herning · <a href="https://www.google.com/maps/search/?api=1&amp;query=Herning+Bibliotek" target="_blank" rel="noopener"><span lang="da">Find vej</span><span lang="en">Directions</span></a></dd>
+            <dd>Herning Bibliotek, Brændgårdvej 1, 7400 Herning · <a href="https://www.google.com/maps/search/?api=1&amp;query=Herning+Bibliotek%2C+Br%C3%A6ndg%C3%A5rdvej+1%2C+7400+Herning" target="_blank" rel="noopener"><span lang="da">Find vej</span><span lang="en">Directions</span></a></dd>
             <dt><span lang="da">For hvem</span><span lang="en">Who</span></dt>
             <dd><span lang="da">Alle er velkomne, uanset tempo og erfaring</span><span lang="en">Everyone is welcome, whatever your pace or experience</span></dd>
             <dt><span lang="da">Pris</span><span lang="en">Cost</span></dt>
@@ -282,7 +283,7 @@ footer .mono{font-family:var(--mono);color:var(--ink)}
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span lang="da">Løb i Herning</span><span lang="en">Running in Herning</span></p>
-        <h2><span lang="da">Gode steder at løbe</span><span lang="en">Good places to run</span></h2>
+        <h2><span lang="da">Gode steder at løbe i Herning</span><span lang="en">Good places to run in Herning</span></h2>
         <p><span lang="da">Herning er flad, grøn og fuld af stier. Her er nogle af vores favoritter, når du løber på egen hånd.</span><span lang="en">Herning is flat, green and full of paths. Here are a few favourites for when you run on your own.</span></p>
       </div>
       <div class="routes">
@@ -367,25 +368,9 @@ footer .mono{font-family:var(--mono);color:var(--ink)}
     <svg class="logo" viewBox="0 0 332 371" role="img" aria-label="Herning Social Running Club"><use href="#hsrc-full"/></svg>
     <div class="meta">
       <span class="mono">hsrc.dk</span>
-      <span><span lang="da">Hver onsdag kl. 17.00 fra Herning Bibliotek</span><span lang="en">Every Wednesday at 17:00 from Herning Library</span></span>
+      <span><span lang="da">Hver onsdag kl. 17.00 fra Herning Bibliotek, Brændgårdvej 1, 7400 Herning</span><span lang="en">Every Wednesday at 17:00 from Herning Library, Brændgårdvej 1, 7400 Herning</span></span>
       <span>© Herning Social Running Club</span>
     </div>
   </div>
 </footer>
 
-<script>
-(function(){
-  var root=document.documentElement;
-  function set(l){
-    root.setAttribute('data-lang',l);
-    root.setAttribute('lang',l);
-    document.querySelectorAll('[data-set-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.setLang===l))});
-    try{localStorage.setItem('hsrc-lang',l)}catch(e){}
-  }
-  var saved=null;
-  try{saved=localStorage.getItem('hsrc-lang')}catch(e){}
-  if(saved!=='da'&&saved!=='en'){saved=(navigator.language||'da').toLowerCase().indexOf('da')===0?'da':'en'}
-  set(saved);
-  document.querySelectorAll('[data-set-lang]').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.setLang)})});
-})();
-</script>
